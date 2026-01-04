@@ -7,21 +7,21 @@ from nltk.stem.porter import PorterStemmer
 import pandas as pd
 import os
 
-# ---------------- NLTK FIX (DO NOT REMOVE) ----------------
+# ------------------ NLTK ABSOLUTE FIX ------------------
 NLTK_DATA_DIR = os.path.join(os.getcwd(), "nltk_data")
+os.makedirs(NLTK_DATA_DIR, exist_ok=True)
+
 nltk.data.path.insert(0, NLTK_DATA_DIR)
 
-# Force punkt_tab compatibility (NLTK ≥3.9)
-try:
-    nltk.data.find("tokenizers/punkt")
-except LookupError:
-    nltk.download("punkt", download_dir=NLTK_DATA_DIR, quiet=True)
-
-try:
-    nltk.data.find("corpora/stopwords")
-except LookupError:
-    nltk.download("stopwords", download_dir=NLTK_DATA_DIR, quiet=True)
-# ----------------------------------------------------------
+# REQUIRED for NLTK >= 3.9
+for resource in ["punkt", "punkt_tab", "stopwords"]:
+    try:
+        nltk.data.find(
+            f"tokenizers/{resource}" if "punkt" in resource else f"corpora/{resource}"
+        )
+    except LookupError:
+        nltk.download(resource, download_dir=NLTK_DATA_DIR, quiet=True)
+# -----------------------------------------------------
 
 ps = PorterStemmer()
 
