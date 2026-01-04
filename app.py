@@ -1,53 +1,48 @@
 import joblib
 import streamlit as st
-import nltk 
+import nltk
 from nltk.corpus import stopwords
 import string
 from nltk.stem.porter import PorterStemmer
 import pandas as pd
 
-import nltk
-nltk.download('punkt')
-nltk.download('stopwords')
+# ---- Cache NLTK downloads to avoid repeated downloads ----
+@st.cache_resource
+def download_nltk_resources():
+    nltk.download('punkt')
+    nltk.download('stopwords')
 
+download_nltk_resources()
 
-# This object is used to do stemming of the words , basically to bring the words to their root words .
+# ---- Initialize stemmer ----
 ps = PorterStemmer()
 
-
-def text_pre_process(text) :
-    # This will make the text to lower case .
+# ---- Text preprocessing function ----
+def text_pre_process(text):
+    # Lowercase
     text = text.lower()
-    # This will break the text to tokens . 
+    # Tokenize
     text = nltk.word_tokenize(text)
     
-    # This helps to remove the special characters like (( , @ # $ % ^ , etc...) , newlines and spaces also .
-    y = []
-    for i in text :
-        if i.isalnum() :
-            y.append(i)
+    # Remove non-alphanumeric tokens
+    tokens = [i for i in text if i.isalnum()]
+    
+    # Remove stopwords and punctuation
+    tokens = [i for i in tokens if i not in stopwords.words('english') and i not in string.punctuation]
+    
+    # Stemming
+    tokens = [ps.stem(i) for i in tokens]
+    
+    # Join tokens back to string
+    return " ".join(tokens)
 
-    # This removes Stopwords and Punctuations from the text .
-    text = y[:] # here we are copying the y and then clearing it in next step , hence the complete data of y is stored in text .
-    y.clear()
-    for i in text :
-        if i not in stopwords.words('english') and i not in string.punctuation :
-            y.append(i)
-
-    # This loop does stemming of the words in the text (STEMMINg means converting words to their root words .)
-    text = y[:]
-    y.clear()
-    for i in text:
-        y.append(ps.stem(i))
-
-    # This join methods make a complete sentence from the list of words like : ["Hello" , "World"] --> Hello World. 
-    return " ".join(y)
-
+# ---- Load model ----
 model = joblib.load("spam_model.joblib")
-# vectorizer = joblib.load("vectorizer.joblib")
+# vectorizer = joblib.load("vectorizer.joblib")  # Uncomment if your pipeline needs it
 
+# ---- Streamlit App ----
+st.title("Spam Email Classifier")
 
-st.title("Spam Emial Classifier")
 user_text = st.text_area("Enter your email/message text:")
 
 if st.button("Check"):
@@ -55,7 +50,7 @@ if st.button("Check"):
         st.warning("Please enter a message.")
     else:
         processed = text_pre_process(user_text)
-        # Wrap into a DataFrame because pipeline expects 'Processed_text' column
+        # Make sure pipeline input matches expected column
         input_df = pd.DataFrame({"Processed_text": [processed]})
         
         pred = model.predict(input_df)[0]
@@ -63,8 +58,4 @@ if st.button("Check"):
         if pred == 1:
             st.warning("Alert!! This message is SPAM")
         else:
-            st.success("This message is NOT_SPAM")
-                                                   
-
-
-'''https://github.com/shubhumre777'''
+            st.success("This message is NOT SPAM")
