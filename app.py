@@ -6,33 +6,36 @@ import string
 from nltk.stem.porter import PorterStemmer
 import pandas as pd
 
-# ---------------------------
-# Ensure NLTK data is available at runtime
-# ---------------------------
-try:
-    nltk.data.find("tokenizers/punkt")
-except LookupError:
-    nltk.download("punkt", quiet=True)
+# ---------------------------------------------------
+# NLTK FIX FOR STREAMLIT CLOUD (DO NOT REMOVE)
+# ---------------------------------------------------
+for resource in ["punkt", "punkt_tab", "stopwords"]:
+    try:
+        if resource in ["punkt", "punkt_tab"]:
+            nltk.data.find(f"tokenizers/{resource}")
+        else:
+            nltk.data.find(f"corpora/{resource}")
+    except LookupError:
+        nltk.download(resource, quiet=True)
+# ---------------------------------------------------
 
-try:
-    nltk.data.find("corpora/stopwords")
-except LookupError:
-    nltk.download("stopwords", quiet=True)
-
-# Initialize stemmer
+# This object is used to do stemming of the words
 ps = PorterStemmer()
 
-# ---------------------------
-# Text preprocessing function
-# ---------------------------
 def text_pre_process(text):
-    text = text.lower()                     # lowercase
-    text = nltk.word_tokenize(text)         # tokenize
+    # This will make the text to lower case
+    text = text.lower()
 
-    # Remove non-alphanumeric characters
-    y = [i for i in text if i.isalnum()]
+    # This will break the text to tokens
+    text = nltk.word_tokenize(text)
+    
+    # Remove special characters
+    y = []
+    for i in text:
+        if i.isalnum():
+            y.append(i)
 
-    # Remove stopwords and punctuation
+    # Remove stopwords and punctuations
     text = y[:]
     y.clear()
     for i in text:
@@ -47,14 +50,10 @@ def text_pre_process(text):
 
     return " ".join(y)
 
-# ---------------------------
-# Load the model
-# ---------------------------
+# Load trained model
 model = joblib.load("spam_model.joblib")
 
-# ---------------------------
-# Streamlit interface
-# ---------------------------
+# Streamlit UI
 st.title("Spam Email Classifier")
 user_text = st.text_area("Enter your email/message text:")
 
