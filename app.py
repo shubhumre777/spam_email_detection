@@ -6,16 +6,28 @@ import string
 from nltk.stem.porter import PorterStemmer
 from nltk.tokenize import word_tokenize
 import pandas as pd
+import nltk
+import os
 
+# Set NLTK data path to a folder your app can write to
+nltk_data_dir = os.path.join(os.getcwd(), "nltk_data")
+if not os.path.exists(nltk_data_dir):
+    os.mkdir(nltk_data_dir)
+
+nltk.data.path.append(nltk_data_dir)
+
+# Download punkt if not present
 try:
     nltk.data.find("tokenizers/punkt")
 except LookupError:
-    nltk.download("punkt", quiet=True)
+    nltk.download("punkt", download_dir=nltk_data_dir, quiet=True)
 
+# Download stopwords if not present
 try:
     nltk.data.find("corpora/stopwords")
 except LookupError:
-    nltk.download("stopwords", quiet=True)
+    nltk.download("stopwords", download_dir=nltk_data_dir, quiet=True)
+
 # nltk.download('punkt')
 ps = PorterStemmer() 
 
@@ -68,6 +80,7 @@ if st.button("Check"):
             st.warning("Alert!! This message is SPAM")
         else:
             st.success("This message is NOT_SPAM")
+
 
 
 
