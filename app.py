@@ -7,16 +7,18 @@ from nltk.stem.porter import PorterStemmer
 from nltk.tokenize import word_tokenize
 import pandas as pd
 
-# nltk.download('punkt')
-ps = PorterStemmer()
+try:
+    nltk.data.find("tokenizers/punkt")
+except LookupError:
+    nltk.download("punkt", quiet=True)
 
-# Ensure NLTK data exists
-for resource in ['punkt', 'stopwords']:
-    try:
-        nltk.data.find(f'tokenizers/{resource}' if resource == 'punkt' else f'corpora/{resource}')
-    except LookupError:
-        nltk.download(resource)
-        
+try:
+    nltk.data.find("corpora/stopwords")
+except LookupError:
+    nltk.download("stopwords", quiet=True)
+# nltk.download('punkt')
+ps = PorterStemmer() 
+
 def text_pre_process(text) :
     # This will make the text to lower case .
     text = text.lower()
@@ -66,6 +68,7 @@ if st.button("Check"):
             st.warning("Alert!! This message is SPAM")
         else:
             st.success("This message is NOT_SPAM")
+
 
 
 
