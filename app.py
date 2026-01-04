@@ -7,45 +7,53 @@ from nltk.stem.porter import PorterStemmer
 import pandas as pd
 import os
 
-# Tell NLTK to look in the local nltk_data folder (the one you uploaded)
-nltk.data.path.append(os.path.join(os.getcwd(), "nltk_data"))
+# Set local NLTK data folder
+nltk_data_dir = os.path.join(os.getcwd(), "nltk_data")
+nltk.data.path.append(nltk_data_dir)
 
-# Initialize PorterStemmer
+# Ensure punkt tokenizer is available
+try:
+    nltk.data.find("tokenizers/punkt")
+except LookupError:
+    nltk.download("punkt", quiet=True)
+
+# Ensure stopwords are available
+try:
+    nltk.data.find("corpora/stopwords")
+except LookupError:
+    nltk.download("stopwords", quiet=True)
+
+# Initialize stemmer
 ps = PorterStemmer()
 
-def text_pre_process(text) :
-    # This will make the text to lower case .
+def text_pre_process(text):
+    # Lowercase
     text = text.lower()
-    # This will break the text to tokens . 
+    # Tokenize
     text = nltk.word_tokenize(text)
     
-    # This helps to remove the special characters like (( , @ # $ % ^ , etc...) , newlines and spaces also .
-    y = []
-    for i in text :
-        if i.isalnum() :
-            y.append(i)
+    # Remove non-alphanumeric characters
+    y = [i for i in text if i.isalnum()]
 
-    # This removes Stopwords and Punctuations from the text .
-    text = y[:] # here we are copying the y and then clearing it in next step , hence the complete data of y is stored in text .
+    # Remove stopwords and punctuation
+    text = y[:]
     y.clear()
-    for i in text :
-        if i not in stopwords.words('english') and i not in string.punctuation :
+    for i in text:
+        if i not in stopwords.words('english') and i not in string.punctuation:
             y.append(i)
 
-    # This loop does stemming of the words in the text (STEMMINg means converting words to their root words .)
+    # Stemming
     text = y[:]
     y.clear()
     for i in text:
         y.append(ps.stem(i))
 
-    # This join methods make a complete sentence from the list of words like : ["Hello" , "World"] --> Hello World. 
     return " ".join(y)
 
-# Load your trained model
+# Load model
 model = joblib.load("spam_model.joblib")
-# vectorizer = joblib.load("vectorizer.joblib")  # if you use a vectorizer
 
-# Streamlit UI
+# Streamlit interface
 st.title("Spam Email Classifier")
 user_text = st.text_area("Enter your email/message text:")
 
@@ -54,11 +62,9 @@ if st.button("Check"):
         st.warning("Please enter a message.")
     else:
         processed = text_pre_process(user_text)
-        # Wrap into a DataFrame because pipeline expects 'Processed_text' column
         input_df = pd.DataFrame({"Processed_text": [processed]})
-        
         pred = model.predict(input_df)[0]
-        
+
         if pred == 1:
             st.warning("Alert!! This message is SPAM")
         else:
