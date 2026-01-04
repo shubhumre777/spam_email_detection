@@ -9,6 +9,8 @@ import pandas as pd
 # This object is used to do stemming of the words , basically to bring the words to their root words .
 ps = PorterStemmer()
 
+stop_words = set(stopwords.words('english'))
+
 
 def text_pre_process(text) :
     # This will make the text to lower case .
@@ -59,3 +61,4 @@ if st.button("Check"):
             st.warning("Alert!! This message is SPAM")
         else:
             st.success("This message is NOT_SPAM")
+
