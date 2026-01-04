@@ -9,7 +9,20 @@ import pandas as pd
 # This object is used to do stemming of the words , basically to bring the words to their root words .
 ps = PorterStemmer()
 
-stop_words = set(stopwords.words('english'))
+# stop_words = set(stopwords.words('english'))
+import os
+
+# Create a local folder for NLTK data in your app
+nltk_data_dir = os.path.join(os.getcwd(), "nltk_data")
+if not os.path.exists(nltk_data_dir):
+    os.makedirs(nltk_data_dir)
+
+# Add this path to NLTK data search path
+nltk.data.path.append(nltk_data_dir)
+
+# Download required resources into that folder
+nltk.download('punkt', download_dir=nltk_data_dir)
+nltk.download('stopwords', download_dir=nltk_data_dir)
 
 
 def text_pre_process(text) :
@@ -61,4 +74,5 @@ if st.button("Check"):
             st.warning("Alert!! This message is SPAM")
         else:
             st.success("This message is NOT_SPAM")
+
 
