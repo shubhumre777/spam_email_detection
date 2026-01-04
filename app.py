@@ -6,6 +6,11 @@ import string
 from nltk.stem.porter import PorterStemmer
 import pandas as pd
 
+import nltk
+nltk.download('punkt')
+nltk.download('stopwords')
+
+
 # This object is used to do stemming of the words , basically to bring the words to their root words .
 ps = PorterStemmer()
 
@@ -60,5 +65,6 @@ if st.button("Check"):
         else:
             st.success("This message is NOT_SPAM")
                                                    
+
 
 '''https://github.com/shubhumre777'''
