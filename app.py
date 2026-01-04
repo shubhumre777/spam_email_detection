@@ -5,19 +5,15 @@ from nltk.corpus import stopwords
 import string
 from nltk.stem.porter import PorterStemmer
 import pandas as pd
-import os
 
-# Set local NLTK data folder
-nltk_data_dir = os.path.join(os.getcwd(), "nltk_data")
-nltk.data.path.append(nltk_data_dir)
-
-# Ensure punkt tokenizer is available
+# ---------------------------
+# Ensure NLTK data is available at runtime
+# ---------------------------
 try:
     nltk.data.find("tokenizers/punkt")
 except LookupError:
     nltk.download("punkt", quiet=True)
 
-# Ensure stopwords are available
 try:
     nltk.data.find("corpora/stopwords")
 except LookupError:
@@ -26,12 +22,13 @@ except LookupError:
 # Initialize stemmer
 ps = PorterStemmer()
 
+# ---------------------------
+# Text preprocessing function
+# ---------------------------
 def text_pre_process(text):
-    # Lowercase
-    text = text.lower()
-    # Tokenize
-    text = nltk.word_tokenize(text)
-    
+    text = text.lower()                     # lowercase
+    text = nltk.word_tokenize(text)         # tokenize
+
     # Remove non-alphanumeric characters
     y = [i for i in text if i.isalnum()]
 
@@ -50,10 +47,14 @@ def text_pre_process(text):
 
     return " ".join(y)
 
-# Load model
+# ---------------------------
+# Load the model
+# ---------------------------
 model = joblib.load("spam_model.joblib")
 
+# ---------------------------
 # Streamlit interface
+# ---------------------------
 st.title("Spam Email Classifier")
 user_text = st.text_area("Enter your email/message text:")
 
