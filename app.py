@@ -7,7 +7,7 @@ from nltk.stem.porter import PorterStemmer
 import pandas as pd
 import os
 
-# ------------------ NLTK ABSOLUTE FIX ------------------
+
 NLTK_DATA_DIR = os.path.join(os.getcwd(), "nltk_data")
 os.makedirs(NLTK_DATA_DIR, exist_ok=True)
 
