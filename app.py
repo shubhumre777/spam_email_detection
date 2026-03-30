@@ -73,7 +73,7 @@ st.header("Follow These Steps ➡️")
 st.subheader('''
 1️⃣ Enter Your Message
 
-Type or paste any message (email, SMS, etc.) into the input field.''' , , divider="rainbow")
+Type or paste any message (email, SMS, etc.) into the input field.''' , divider="rainbow")
 st.subheader('''
 2️⃣ Get the Prediction
 
