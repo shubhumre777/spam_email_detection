@@ -79,6 +79,6 @@ st.subheader('''
 
 Click the Predict button to see whether the message is:
 
-✅ Not Spam (Ham)
+✅ Not Spam \n
 🚫 Spam
 ''')
