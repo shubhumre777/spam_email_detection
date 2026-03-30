@@ -56,16 +56,17 @@ Example:
 
 ---
 
-## 🏗️ Project Structure
-
 Spam-Classifier/
 │
-├── app.py
-├── spam_model.joblib
-├── spam.csv
-├── nltk_data/
-├── requirements.txt
-└── README.md
+├── app.py                 # Main application (Flask/Streamlit entry point)
+├── spam_model.joblib     # Trained machine learning model
+├── spam.csv              # Dataset used for training/testing
+│
+├── nltk_data/            # NLTK resources (tokenizers, stopwords, etc.)
+│   └── ...               # Additional NLTK files
+│
+├── requirements.txt      # Project dependencies
+└── README.md             # Project documentation
 
 ---
 
@@ -114,7 +115,7 @@ Prediction (Spam / Ham)
 ## 🖥️ Run Locally
 
 1. Clone Repository  
-git clone https://github.com/your-username/spam-classifier.git  
+git clone https://github.com/shubhumre777/spam-classifier.git  
 cd spam-classifier  
 
 2. Install Dependencies  
