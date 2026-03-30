@@ -69,6 +69,7 @@ if st.button("Check"):
             st.warning("🚨 This message is SPAM")
         else:
             st.success("✅ This message is NOT SPAM")
+st.header("Follow These Steps ➡️")
 st.subheader('''
 1️⃣ Enter Your Message
 
