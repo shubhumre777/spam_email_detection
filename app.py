@@ -69,3 +69,15 @@ if st.button("Check"):
             st.warning("🚨 This message is SPAM")
         else:
             st.success("✅ This message is NOT SPAM")
+st.subheader('''
+1️⃣ Enter Your Message
+
+Type or paste any message (email, SMS, etc.) into the input field.
+
+2️⃣ Get the Prediction
+
+Click the Predict button to see whether the message is:
+
+✅ Not Spam (Ham)
+🚫 Spam
+''')
