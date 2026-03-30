@@ -1,204 +1,195 @@
-<h1 align="center">Spam Email Classification System</h1>
+<h1 align="center">🚀 Spam Email Classifier Web App</h1>
 
 <p align="center">
-  <b>A Machine Learning-based NLP system for real-time spam detection</b><br>
-  Designed using TF-IDF feature engineering and Multinomial Naive Bayes
+  <b>Machine Learning + NLP powered Spam Detection System</b><br>
+  🚨 Detect Spam | ✅ Identify Legit Messages | ⚡ Real-time Prediction
 </p>
 
-<hr>
-
-<h2>Overview</h2>
-
-<p>
-This project presents a robust Natural Language Processing (NLP) pipeline that classifies textual messages into:
+<p align="center">
+  <!-- Typing Animation -->
+  <img src="https://readme-typing-svg.herokuapp.com?size=22&duration=3000&color=00FFAA&center=true&vCenter=true&width=600&lines=Spam+Detection+using+Machine+Learning;NLP+%2B+TF-IDF+%2B+Naive+Bayes;Real-time+Prediction+Web+App" />
 </p>
+
+<p align="center">
+  <a href="https://spamemaildetection-a5ve47mcinjnq5vnsuakel.streamlit.app/">
+    <img src="https://img.shields.io/badge/🚀%20Live%20App-Click%20Here-success?style=for-the-badge&logo=streamlit">
+  </a>
+</p>
+
+---
+
+<h2>✨ Features</h2>
 
 <ul>
-  <li><b>Spam</b> — unsolicited, promotional, or malicious content</li>
-  <li><b>Ham</b> — legitimate communication</li>
+  <li>⚡ Real-time spam detection</li>
+  <li>🧠 NLP-based preprocessing</li>
+  <li>📊 TF-IDF feature extraction</li>
+  <li>🎯 High accuracy classification</li>
+  <li>🎨 Clean Streamlit UI</li>
+  <li>🚀 Fast & lightweight deployment</li>
 </ul>
 
-<p>
-The system is implemented using Scikit-learn and deployed via Streamlit, enabling real-time predictions.
-</p>
+---
 
-<hr>
+<h2>🧠 How It Works</h2>
 
-<h2>System Architecture</h2>
+<h3>🔹 1. Text Preprocessing</h3>
 
 <p align="center">
-<svg width="700" height="200">
-  <defs>
-    <linearGradient id="grad1">
-      <stop offset="0%" stop-color="#00c6ff"/>
-      <stop offset="100%" stop-color="#0072ff"/>
-    </linearGradient>
-  </defs>
-
-  <!-- Boxes -->
-  <rect x="10" y="60" width="120" height="60" rx="10" fill="url(#grad1)" opacity="0.8"/>
-  <rect x="150" y="60" width="140" height="60" rx="10" fill="url(#grad1)" opacity="0.8"/>
-  <rect x="310" y="60" width="140" height="60" rx="10" fill="url(#grad1)" opacity="0.8"/>
-  <rect x="470" y="60" width="140" height="60" rx="10" fill="url(#grad1)" opacity="0.8"/>
-
-  <!-- Text -->
-  <text x="25" y="95" fill="white">Raw Text</text>
-  <text x="165" y="95" fill="white">Preprocessing</text>
-  <text x="325" y="95" fill="white">TF-IDF</text>
-  <text x="490" y="95" fill="white">Classifier</text>
-
-  <!-- Arrows -->
-  <line x1="130" y1="90" x2="150" y2="90" stroke="black"/>
-  <line x1="290" y1="90" x2="310" y2="90" stroke="black"/>
-  <line x1="450" y1="90" x2="470" y2="90" stroke="black"/>
-</svg>
+  <img src="https://raw.githubusercontent.com/ageron/handson-ml2/master/images/unsupervised_learning/nlp_pipeline.png" width="600"/>
 </p>
-
-<hr>
-
-<h2>Methodology</h2>
-
-<h3>1. Text Preprocessing</h3>
 
 <ul>
   <li>Lowercasing</li>
-  <li>Tokenization</li>
+  <li>Tokenization (NLTK)</li>
   <li>Stopword removal</li>
-  <li>Punctuation filtering</li>
-  <li>Stemming using Porter Stemmer</li>
+  <li>Punctuation removal</li>
+  <li>Stemming (PorterStemmer)</li>
 </ul>
 
-<p><b>Example Transformation:</b></p>
+<p><b>Example:</b><br>
+"Congratulations!!! You've won $1000"<br>
+➡️ <code>congratul you 1000</code>
+</p>
+
+---
+
+<h3>🔹 2. Feature Extraction (TF-IDF)</h3>
+
+<p align="center">
+  <img src="https://scikit-learn.org/stable/_images/sphx_glr_plot_tfidf_001.png" width="600"/>
+</p>
+
+<ul>
+  <li>Text → Numerical vectors</li>
+  <li>Top 3000 features</li>
+</ul>
+
+---
+
+<h3>🔹 3. Model (Naive Bayes)</h3>
+
+<p align="center">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Naive_Bayes_classifier.svg/800px-Naive_Bayes_classifier.svg.png" width="600"/>
+</p>
+
+<ul>
+  <li>Multinomial Naive Bayes</li>
+  <li>Fast & efficient for text classification</li>
+</ul>
+
+---
+
+<h2>🔄 ML Pipeline</h2>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/ageron/handson-ml2/master/images/unsupervised_learning/pipeline.png" width="700"/>
+</p>
 
 <pre>
-Input:  "Congratulations!!! You've won $1000"
-Output: "congratul you 1000"
+Raw Text
+   ↓
+Text Preprocessing
+   ↓
+TF-IDF Vectorizer
+   ↓
+Naive Bayes Model
+   ↓
+Prediction (Spam / Ham)
 </pre>
 
 ---
 
-<h3>2. Feature Engineering</h3>
+<h2>📊 Dataset</h2>
 
-<p>
-Text data is transformed into numerical representations using TF-IDF vectorization.
-</p>
+<ul>
+  <li>SMS Spam Collection Dataset</li>
+</ul>
 
-<p align="center">
-<svg width="400" height="200">
-  <rect x="20" y="50" width="80" height="80" fill="#00c6ff" opacity="0.7"/>
-  <rect x="120" y="30" width="80" height="100" fill="#0072ff" opacity="0.7"/>
-  <rect x="220" y="70" width="80" height="60" fill="#00c6ff" opacity="0.7"/>
-
-  <text x="35" y="140">Word1</text>
-  <text x="135" y="140">Word2</text>
-  <text x="235" y="140">Word3</text>
-</svg>
-</p>
-
----
-
-<h3>3. Classification Model</h3>
-
-<p>
-A Multinomial Naive Bayes classifier is used due to its efficiency and strong performance in text classification tasks.
-</p>
-
-<p align="center">
-<svg width="300" height="200">
-  <circle cx="150" cy="100" r="70" fill="url(#grad1)" opacity="0.8"/>
-  <text x="110" y="105" fill="white">Naive Bayes</text>
-</svg>
-</p>
-
----
-
-<h2>Prediction Output</h2>
-
-<table>
+<table align="center">
   <tr>
-    <th>Value</th>
-    <th>Interpretation</th>
+    <th>Class</th>
+    <th>Percentage</th>
   </tr>
   <tr>
-    <td>1</td>
-    <td>Spam</td>
+    <td>✅ Ham</td>
+    <td>~87%</td>
   </tr>
   <tr>
-    <td>0</td>
-    <td>Not Spam</td>
+    <td>🚨 Spam</td>
+    <td>~13%</td>
   </tr>
 </table>
 
 ---
 
-<h2>Dataset</h2>
+<h2>⚙️ Tech Stack</h2>
 
-<p>
-The model is trained on the SMS Spam Collection dataset.
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=python,sklearn,pandas,numpy,streamlit,git" />
 </p>
 
-<ul>
-  <li>Ham: ~87%</li>
-  <li>Spam: ~13%</li>
-</ul>
+---
+
+<h2>🧪 Example</h2>
+
+<p><b>Input:</b><br>
+<code>Congratulations! You have won a free prize!</code>
+</p>
+
+<p>➡️ 🚨 <b>SPAM</b></p>
+
+<p><b>Input:</b><br>
+<code>Hey, are we meeting today?</code>
+</p>
+
+<p>➡️ ✅ <b>NOT SPAM</b></p>
 
 ---
 
-<h2>Technology Stack</h2>
-
-<ul>
-  <li>Python</li>
-  <li>Pandas, NumPy</li>
-  <li>Scikit-learn</li>
-  <li>NLTK</li>
-  <li>Streamlit</li>
-</ul>
-
----
-
-<h2>Example Predictions</h2>
+<h2>🚀 Run Locally</h2>
 
 <pre>
-Input: "Congratulations! You have won a free prize!"
-Output: Spam
-
-Input: "Hey, are we meeting today?"
-Output: Not Spam
+git clone https://github.com/shubhumre777/spam-classifier.git
+cd spam-classifier
+pip install -r requirements.txt
+streamlit run app.py
 </pre>
 
 ---
 
-<h2>Future Enhancements</h2>
+<h2>🚀 Future Improvements</h2>
 
 <ul>
-  <li>Integration with advanced classifiers (SVM, Ensemble methods)</li>
-  <li>Transformer-based models (BERT)</li>
-  <li>Multi-language support</li>
-  <li>Email client integration</li>
+  <li>🤖 Advanced ML models (SVM, Random Forest)</li>
+  <li>🧠 Deep Learning (LSTM, BERT)</li>
+  <li>☁️ Cloud deployment (AWS/GCP)</li>
+  <li>📧 Gmail integration</li>
+  <li>🌍 Multi-language support</li>
 </ul>
 
 ---
 
-<h2>Limitations</h2>
+<h2>⚠️ Limitations</h2>
 
 <ul>
-  <li>Dataset limited to SMS format</li>
-  <li>Restricted vocabulary size</li>
-  <li>Lack of contextual semantic understanding</li>
+  <li>SMS dataset only</li>
+  <li>Limited vocabulary</li>
+  <li>No deep contextual understanding</li>
 </ul>
 
 ---
 
-<h2 align="center">Author</h2>
+<h2 align="center">👨‍💻 Author</h2>
 
 <p align="center">
-Developed as a practical implementation of NLP and Machine Learning techniques for real-world applications.
+  Built with ❤️ using Machine Learning & NLP
 </p>
 
 ---
 
-<h2 align="center">Support</h2>
+<h2 align="center">⭐ Support</h2>
 
 <p align="center">
-If you find this project useful, consider starring the repository and contributing.
+  ⭐ Star the repo &nbsp;&nbsp; 🍴 Fork it &nbsp;&nbsp; 🚀 Contribute
 </p>
