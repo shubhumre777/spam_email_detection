@@ -1,5 +1,7 @@
 # 📧 Spam Email Classifier Web App
 
+## Direct link to the app : https://spamemaildetection-a5ve47mcinjnq5vnsuakel.streamlit.app/
+
 A modern **Machine Learning-powered web application** that classifies messages as:
 
 - 🚨 **Spam** → Unwanted / promotional / malicious messages  
@@ -54,21 +56,6 @@ Example:
 | 1 | 🚨 Spam |
 | 0 | ✅ Not Spam |
 
----
-### 🔹 5. Files Structure
-Spam-Classifier/
-│
-├── app.py
-├── spam_model.joblib
-├── spam.csv
-│
-├── nltk_data/
-│   ├── tokenizers/
-│   ├── corpora/
-│   └── ...
-│
-├── requirements.txt
-└── README.md
 
 ---
 
