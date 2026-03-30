@@ -6,18 +6,13 @@
 </p>
 
 <p align="center">
-  <a href="https://spamemaildetection-a5ve47mcinjnq5vnsuakel.streamlit.app/">
-    <img src="https://img.shields.io/badge/Live%20App-Click%20Here-success?style=for-the-badge&logo=streamlit">
-  </a>
+  <!-- Typing Animation -->
+  <img src="https://readme-typing-svg.herokuapp.com?size=22&duration=3000&color=00FFAA&center=true&vCenter=true&width=600&lines=Spam+Detection+using+Machine+Learning;NLP+%2B+TF-IDF+%2B+Naive+Bayes;Real-time+Prediction+Web+App" />
 </p>
-
----
-
-<h2>🌐 Live Demo</h2>
 
 <p align="center">
   <a href="https://spamemaildetection-a5ve47mcinjnq5vnsuakel.streamlit.app/">
-    <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzJ1YjJ2dDJ0Z2h5ZzM2Z2s3a2Jlb3d5Z3E5b3g3dTRpYzNqbmU4NiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3o7aD2saalBwwftBIY/giphy.gif" width="600"/>
+    <img src="https://img.shields.io/badge/🚀%20Live%20App-Click%20Here-success?style=for-the-badge&logo=streamlit">
   </a>
 </p>
 
@@ -41,7 +36,7 @@
 <h3>🔹 1. Text Preprocessing</h3>
 
 <p align="center">
-  <img src="https://miro.medium.com/v2/resize:fit:1200/1*8lH3qZp2f6d0RvrRZtGJYQ.png" width="600"/>
+  <img src="https://raw.githubusercontent.com/ageron/handson-ml2/master/images/unsupervised_learning/nlp_pipeline.png" width="600"/>
 </p>
 
 <ul>
@@ -62,7 +57,7 @@
 <h3>🔹 2. Feature Extraction (TF-IDF)</h3>
 
 <p align="center">
-  <img src="https://miro.medium.com/v2/resize:fit:1400/1*H6T3Y4QhFqM8Y7pD7X1zKw.png" width="600"/>
+  <img src="https://scikit-learn.org/stable/_images/sphx_glr_plot_tfidf_001.png" width="600"/>
 </p>
 
 <ul>
@@ -75,7 +70,7 @@
 <h3>🔹 3. Model (Naive Bayes)</h3>
 
 <p align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Naive_Bayes_classifier.svg/1200px-Naive_Bayes_classifier.svg.png" width="600"/>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Naive_Bayes_classifier.svg/800px-Naive_Bayes_classifier.svg.png" width="600"/>
 </p>
 
 <ul>
@@ -88,7 +83,7 @@
 <h2>🔄 ML Pipeline</h2>
 
 <p align="center">
-  <img src="https://miro.medium.com/v2/resize:fit:1400/1*ZzY3w2s0yY3E6w9V6k6t4A.png" width="700"/>
+  <img src="https://raw.githubusercontent.com/ageron/handson-ml2/master/images/unsupervised_learning/pipeline.png" width="700"/>
 </p>
 
 <pre>
@@ -111,7 +106,7 @@ Prediction (Spam / Ham)
   <li>SMS Spam Collection Dataset</li>
 </ul>
 
-<table>
+<table align="center">
   <tr>
     <th>Class</th>
     <th>Percentage</th>
