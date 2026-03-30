@@ -55,18 +55,20 @@ Example:
 | 0 | ✅ Not Spam |
 
 ---
-
+### 🔹 5. Files Structure
 Spam-Classifier/
 │
-├── app.py                 # Main application (Flask/Streamlit entry point)
-├── spam_model.joblib     # Trained machine learning model
-├── spam.csv              # Dataset used for training/testing
+├── app.py
+├── spam_model.joblib
+├── spam.csv
 │
-├── nltk_data/            # NLTK resources (tokenizers, stopwords, etc.)
-│   └── ...               # Additional NLTK files
+├── nltk_data/
+│   ├── tokenizers/
+│   ├── corpora/
+│   └── ...
 │
-├── requirements.txt      # Project dependencies
-└── README.md             # Project documentation
+├── requirements.txt
+└── README.md
 
 ---
 
