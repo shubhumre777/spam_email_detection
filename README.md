@@ -56,10 +56,6 @@
 
 <h3>🔹 2. Feature Extraction (TF-IDF)</h3>
 
-<p align="center">
-  <img src="https://scikit-learn.org/stable/_images/sphx_glr_plot_tfidf_001.png" width="600"/>
-</p>
-
 <ul>
   <li>Text → Numerical vectors</li>
   <li>Top 3000 features</li>
@@ -69,10 +65,6 @@
 
 <h3>🔹 3. Model (Naive Bayes)</h3>
 
-<p align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Naive_Bayes_classifier.svg/800px-Naive_Bayes_classifier.svg.png" width="600"/>
-</p>
-
 <ul>
   <li>Multinomial Naive Bayes</li>
   <li>Fast & efficient for text classification</li>
@@ -81,10 +73,6 @@
 ---
 
 <h2>🔄 ML Pipeline</h2>
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/ageron/handson-ml2/master/images/unsupervised_learning/pipeline.png" width="700"/>
-</p>
 
 <pre>
 Raw Text
