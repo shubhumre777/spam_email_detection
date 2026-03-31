@@ -36,7 +36,7 @@
 <h3>🔹 1. Text Preprocessing</h3>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ageron/handson-ml2/master/images/unsupervised_learning/nlp_pipeline.png" width="600"/>
+  <img src="[https://raw.githubusercontent.com/ageron/handson-ml2/master/images/unsupervised_learning/nlp_pipeline.png](https://www.facebook.com/photo/?fbid=1174237634718784&set=a.466580212151200&__cft__[0]=AZbyx7mdEhBwxVqdkk9krDni030MMg9cWTLrTK4PcY2D7CXfx8ninMLm3qlRwjlPGQikYxrQGkhjSEZ9wcEF9pP-Oh32t0D6xNsDICH6RpIhrgWvg3bhgvKoZ6mDNn7Qlh1i8088NTi3V6dcGSRs2Jhu5rrcmdxytlyaJ0ZUIvTISQ&__tn__=EH-R)" width="600"/>
 </p>
 
 <ul>
