@@ -12,7 +12,7 @@ import os
 # Configure the Streamlit page
 st.set_page_config(
     page_title="Spam Email Classifier",
-    page_icon="✉️",
+    page_icon="📧",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
