@@ -18,7 +18,7 @@ st.set_page_config(
 )
 
 
-# Configure a local directory for NLTK resources
+# Configure the local directory for NLTK resources
 NLTK_DATA_DIR = os.path.join(os.getcwd(), "nltk_data")
 os.makedirs(NLTK_DATA_DIR, exist_ok=True)
 
@@ -45,7 +45,7 @@ for resource in ["punkt", "punkt_tab", "stopwords"]:
 ps = PorterStemmer()
 
 
-# Preprocess the input text before sending it to the model
+# Preprocess the input text
 def text_pre_process(text):
     text = text.lower()
     text = nltk.word_tokenize(text)
@@ -72,11 +72,11 @@ def text_pre_process(text):
     return " ".join(y)
 
 
-# Load the trained spam classification model
+# Load the trained machine learning model
 model = joblib.load("spam_model.joblib")
 
 
-# Add custom styling to the Streamlit interface
+# Add custom styling to the Streamlit application
 st.markdown(
     """
     <style>
@@ -133,6 +133,39 @@ st.markdown(
         color: #15803d;
     }
 
+    .rainbow-line {
+        height: 4px;
+        width: 100%;
+        border-radius: 10px;
+
+        background: linear-gradient(
+            90deg,
+            #ff0000,
+            #ff7f00,
+            #ffff00,
+            #00ff00,
+            #00ffff,
+            #0000ff,
+            #8b00ff,
+            #ff0000
+        );
+
+        background-size: 200% 100%;
+        animation: rainbowMove 4s linear infinite;
+
+        margin: 30px 0;
+    }
+
+    @keyframes rainbowMove {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        100% {
+            background-position: 200% 50%;
+        }
+    }
+
     @keyframes resultIn {
         from {
             opacity: 0;
@@ -155,6 +188,7 @@ st.markdown(
 welcome_animation = """
 <!DOCTYPE html>
 <html>
+
 <head>
 
 <style>
@@ -184,12 +218,14 @@ body {
     position: relative;
     overflow: hidden;
 
-    background: rgba(255,255,255,0.75);
-    border: 1px solid rgba(0,0,0,0.06);
+    background: rgba(255, 255, 255, 0.75);
+
+    border: 1px solid rgba(0, 0, 0, 0.06);
+
     border-radius: 28px;
 
     box-shadow:
-        0 20px 60px rgba(0,0,0,0.08);
+        0 20px 60px rgba(0, 0, 0, 0.08);
 
     backdrop-filter: blur(18px);
 
@@ -198,14 +234,16 @@ body {
 
 .glow {
     position: absolute;
+
     width: 320px;
     height: 320px;
+
     border-radius: 50%;
 
     background:
         radial-gradient(
             circle,
-            rgba(99,102,241,0.16),
+            rgba(99, 102, 241, 0.16),
             transparent 70%
         );
 
@@ -217,14 +255,16 @@ body {
 
 .glow2 {
     position: absolute;
+
     width: 280px;
     height: 280px;
+
     border-radius: 50%;
 
     background:
         radial-gradient(
             circle,
-            rgba(14,165,233,0.13),
+            rgba(14, 165, 233, 0.13),
             transparent 70%
         );
 
@@ -237,9 +277,11 @@ body {
 .email {
     width: 90px;
     height: 65px;
+
     margin: 0 auto 30px;
 
     border: 2px solid #6366f1;
+
     border-radius: 14px;
 
     position: relative;
@@ -250,12 +292,14 @@ body {
 .email::before,
 .email::after {
     content: "";
+
     position: absolute;
 
     width: 58px;
     height: 2px;
 
     background: #6366f1;
+
     top: 28px;
 }
 
@@ -271,6 +315,7 @@ body {
 
 .scan {
     position: absolute;
+
     width: 100%;
     height: 2px;
 
@@ -290,8 +335,11 @@ body {
 
 .title {
     font-size: 52px;
+
     font-weight: 800;
+
     margin: 0;
+
     letter-spacing: -1.5px;
 
     background:
@@ -303,6 +351,7 @@ body {
         );
 
     -webkit-background-clip: text;
+
     -webkit-text-fill-color: transparent;
 
     animation: titleIn 1.2s ease-out;
@@ -310,9 +359,11 @@ body {
 
 .description {
     max-width: 680px;
+
     margin: 20px auto 0;
 
     font-size: 18px;
+
     line-height: 1.7;
 
     color: #64748b;
@@ -322,48 +373,60 @@ body {
 
 .note {
     margin-top: 28px;
+
     font-size: 15px;
+
     color: #475569;
 
     opacity: 0;
 
-    animation: noteIn 1s ease forwards;
+    animation:
+        noteIn 1s ease forwards;
+
     animation-delay: 1.2s;
 }
 
 @keyframes cardIn {
     from {
         opacity: 0;
-        transform: translateY(30px) scale(0.97);
+        transform:
+            translateY(30px)
+            scale(0.97);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform:
+            translateY(0)
+            scale(1);
     }
 }
 
 @keyframes titleIn {
     from {
         opacity: 0;
-        transform: translateY(25px);
+        transform:
+            translateY(25px);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform:
+            translateY(0);
     }
 }
 
 @keyframes textIn {
     from {
         opacity: 0;
-        transform: translateY(15px);
+        transform:
+            translateY(15px);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform:
+            translateY(0);
     }
 }
 
@@ -375,11 +438,13 @@ body {
 
 @keyframes floating {
     0%, 100% {
-        transform: translateY(0);
+        transform:
+            translateY(0);
     }
 
     50% {
-        transform: translateY(-10px);
+        transform:
+            translateY(-10px);
     }
 }
 
@@ -405,21 +470,25 @@ body {
 
 @keyframes glowMove {
     0%, 100% {
-        transform: translate(0, 0);
+        transform:
+            translate(0, 0);
     }
 
     50% {
-        transform: translate(80px, 60px);
+        transform:
+            translate(80px, 60px);
     }
 }
 
 @keyframes glowMove2 {
     0%, 100% {
-        transform: translate(0, 0);
+        transform:
+            translate(0, 0);
     }
 
     50% {
-        transform: translate(-70px, -50px);
+        transform:
+            translate(-70px, -50px);
     }
 }
 
@@ -434,7 +503,9 @@ body {
     <div class="card">
 
         <div class="glow"></div>
+
         <div class="glow2"></div>
+
         <div class="scan"></div>
 
         <div class="email"></div>
@@ -459,6 +530,7 @@ body {
 </div>
 
 </body>
+
 </html>
 """
 
@@ -533,9 +605,16 @@ if st.button(
             )
 
 
-# Explain the basic workflow of the classifier
-st.divider()
+# Add the animated rainbow separator
+st.markdown(
+    """
+    <div class="rainbow-line"></div>
+    """,
+    unsafe_allow_html=True
+)
 
+
+# Explain the basic workflow of the classifier
 st.subheader("How It Works")
 
 col1, col2, col3 = st.columns(3)
