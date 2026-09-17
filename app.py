@@ -588,7 +588,7 @@ if st.button(
             st.markdown(
                 """
                 <div class="result-card spam-card">
-                    🚨 This message is classified as SPAM
+                    This message is classified as SPAM
                 </div>
                 """,
                 unsafe_allow_html=True
@@ -598,7 +598,7 @@ if st.button(
             st.markdown(
                 """
                 <div class="result-card safe-card">
-                    ✅ This message is classified as NOT SPAM
+                     This message is classified as NOT SPAM
                 </div>
                 """,
                 unsafe_allow_html=True
