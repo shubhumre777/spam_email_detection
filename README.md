@@ -1,183 +1,188 @@
-<h1 align="center">🚀 Spam Email Classifier Web App</h1>
+<div align="center>
 
-<p align="center">
-  <b>Machine Learning + NLP powered Spam Detection System</b><br>
-  🚨 Detect Spam | ✅ Identify Legit Messages | ⚡ Real-time Prediction
-</p>
+# 📬 Spam / Not Spam
+### A Machine Learning + NLP Message Classification System
 
-<p align="center">
-  <!-- Typing Animation -->
-  <img src="https://readme-typing-svg.herokuapp.com?size=22&duration=3000&color=00FFAA&center=true&vCenter=true&width=600&lines=Spam+Detection+using+Machine+Learning;NLP+%2B+TF-IDF+%2B+Naive+Bayes;Real-time+Prediction+Web+App" />
-</p>
+**Spot suspicious messages. Keep legitimate conversations moving.**
 
-<p align="center">
-  <a href="https://spamemaildetection-a5ve47mcinjnq5vnsuakel.streamlit.app/">
-    <img src="https://img.shields.io/badge/🚀%20Live%20App-Click%20Here-success?style=for-the-badge&logo=streamlit">
-  </a>
-</p>
+<p><a href="https://spamemaildetection-a5ve47mcinjnq5vnsuakel.streamlit.app/"><img src="https://img.shields.io/badge/TRY_THE_LIVE_APP-Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white"></a> <img src="https://img.shields.io/badge/Python-ML-3776AB?style=for-the-badge&logo=python"> <img src="https://img.shields.io/badge/NLP-TF--IDF-0F766E?style=for-the-badge"> <img src="https://img.shields.io/badge/Classifier-Multinomial_Naive_Bayes-7C3AED?style=for-the-badge"></p>
+<img src="assets/spam-vs-not-spam.svg" width="100%" alt="Spam versus not spam classification banner">
+</div>
 
 ---
 
-<h2>✨ Features</h2>
+## The idea
 
-<ul>
-  <li>⚡ Real-time spam detection</li>
-  <li>🧠 NLP-based preprocessing</li>
-  <li>📊 TF-IDF feature extraction</li>
-  <li>🎯 High accuracy classification</li>
-  <li>🎨 Clean Streamlit UI</li>
-  <li>🚀 Fast & lightweight deployment</li>
-</ul>
+Spam messages can contain misleading offers, unsolicited promotions, and suspicious links. This project uses a lightweight NLP and machine-learning pipeline to classify submitted text into two categories:
 
----
+| 🚨 SPAM | ✅ NOT SPAM (HAM) |
+|:---:|:---:|
+| Unwanted or unsolicited message | Legitimate message |
+| “Congratulations! You won a free prize!” | “Hey, are we meeting today?” |
 
-<h2>🧠 How It Works</h2>
+> **Try it:** [Open the live Streamlit application](https://spamemaildetection-a5ve47mcinjnq5vnsuakel.streamlit.app/)
 
-<h3>🔹 1. Text Preprocessing</h3>
+## At a glance
 
-<p align="center">
-  <img src="E:\515899712_1174237638052117_6681561940932264994_n.jpg" , width="600"/>
-</p>
+| Component | Implementation |
+|---|---|
+| Problem type | Binary text classification |
+| Input | Email / SMS-style message text |
+| Text cleaning | Lowercasing, tokenization, alphanumeric filtering, stopword removal, stemming |
+| Feature extraction | TF-IDF |
+| Feature vocabulary limit | 3,000 features (`max_features=3000`) |
+| Classifier | Multinomial Naive Bayes |
+| Model persistence | Joblib (`spam_model.joblib`) |
+| User interface | Streamlit |
+| NLP utilities | NLTK |
+| Evaluation code | Accuracy, weighted precision, classification report |
 
-<ul>
-  <li>Lowercasing</li>
-  <li>Tokenization (NLTK)</li>
-  <li>Stopword removal</li>
-  <li>Punctuation removal</li>
-  <li>Stemming (PorterStemmer)</li>
-</ul>
+## How the classifier works
 
-<p><b>Example:</b><br>
-"Congratulations!!! You've won $1000"<br>
-➡️ <code>congratul you 1000</code>
-</p>
+```mermaid
+flowchart TD
+    A["📨 Raw message"] --> B["Lowercase + tokenize"]
+    B --> C["Keep alphanumeric tokens"]
+    C --> D["Remove English stopwords"]
+    D --> E["Porter stemming"]
+    E --> F["TF-IDF vectorization"]
+    F --> G["Multinomial Naive Bayes"]
+    G --> H{"Predicted class"}
+    H -->|1| I["🚨 SPAM"]
+    H -->|0| J["✅ NOT SPAM / HAM"]
+    style I fill:#3b1720,stroke:#fb7185,color:#ffe4e6
+    style J fill:#12352b,stroke:#34d399,color:#d1fae5
+    style G fill:#211b3d,stroke:#a78bfa,color:#ede9fe
+```
 
----
+### 1. Text preprocessing
 
-<h3>🔹 2. Feature Extraction (TF-IDF)</h3>
+The `text_pre_process()` function in the training script and app:
+1. Converts text to lowercase.
+2. Tokenizes it with NLTK.
+3. Keeps alphanumeric tokens.
+4. Removes English stopwords and punctuation.
+5. Applies NLTK Porter stemming.
+6. Joins processed tokens into a string.
 
-<ul>
-  <li>Text → Numerical vectors</li>
-  <li>Top 3000 features</li>
-</ul>
+### 2. TF-IDF feature extraction
 
----
+TF-IDF converts cleaned text into numerical features. The training script uses `TfidfVectorizer(max_features=3000)`, limiting the vocabulary to the 3,000 most relevant features selected by the vectorizer.
 
-<h3>🔹 3. Model (Naive Bayes)</h3>
+### 3. Multinomial Naive Bayes
 
-<ul>
-  <li>Multinomial Naive Bayes</li>
-  <li>Fast & efficient for text classification</li>
-</ul>
+The TF-IDF representation is passed to `MultinomialNB`. The complete scikit-learn pipeline is trained and saved as `spam_model.joblib`, then loaded by the Streamlit application for inference.
 
----
+## Model evaluation
 
-<h2>🔄 ML Pipeline</h2>
+The training script evaluates predictions on a held-out test split configured with `test_size=0.2` and `random_state=42`.
 
-<pre>
-Raw Text
-   ↓
-Text Preprocessing
-   ↓
-TF-IDF Vectorizer
-   ↓
-Naive Bayes Model
-   ↓
-Prediction (Spam / Ham)
-</pre>
+| Metric | What it tells us | Reported value |
+|---|---|---|
+| Accuracy | Overall proportion of correct predictions | Not published — run evaluation |
+| Weighted precision | Weighted precision across classes | Not published — run evaluation |
+| Per-class precision | Reliability of predictions for each class | Not published — run evaluation |
+| Per-class recall | Share of each class correctly identified | Not published — run evaluation |
+| Per-class F1-score | Harmonic mean of precision and recall | Not published — run evaluation |
 
----
+**Why no score is shown:** `SMS_SPAM.py` contains metric calculations, but the repository root does not include the `spam.csv` dataset required to reproduce training and evaluation. No metric has been guessed or fabricated. Run the script with the original dataset to obtain actual scores.
 
-<h2>📊 Dataset</h2>
+```bash
+python SMS_SPAM.py
+```
 
-<ul>
-  <li>SMS Spam Collection Dataset</li>
-</ul>
+The script prints the classification report, accuracy, and weighted precision, and saves the trained pipeline to `spam_model.joblib`.
 
-<table align="center">
-  <tr>
-    <th>Class</th>
-    <th>Percentage</th>
-  </tr>
-  <tr>
-    <td>✅ Ham</td>
-    <td>~87%</td>
-  </tr>
-  <tr>
-    <td>🚨 Spam</td>
-    <td>~13%</td>
-  </tr>
-</table>
+## Repository structure
 
----
+```text
+spam_email_detection/
+├── assets/
+│   └── spam-vs-not-spam.svg
+├── .devcontainer/
+├── nltk_data/
+├── app.py                 # Streamlit interface and prediction flow
+├── SMS_SPAM.py            # Dataset preparation, training and evaluation
+├── spam_model.joblib      # Serialized trained pipeline
+├── requirements.txt       # Python dependencies
+└── README.md
+```
 
-<h2>⚙️ Tech Stack</h2>
+## Run locally
 
-<p align="center">
-  <img src="https://skillicons.dev/icons?i=python,sklearn,pandas,numpy,streamlit,git" />
-</p>
+### 1. Clone the repository
 
----
+```bash
+git clone https://github.com/shubhumre777/spam_email_detection.git
+cd spam_email_detection
+```
 
-<h2>🧪 Example</h2>
+### 2. Create and activate a virtual environment
 
-<p><b>Input:</b><br>
-<code>Congratulations! You have won a free prize!</code>
-</p>
+```bash
+python -m venv .venv
+# Windows PowerShell
+.venv\Scripts\Activate.ps1
+# macOS / Linux
+source .venv/bin/activate
+```
 
-<p>➡️ 🚨 <b>SPAM</b></p>
+### 3. Install dependencies and launch
 
-<p><b>Input:</b><br>
-<code>Hey, are we meeting today?</code>
-</p>
-
-<p>➡️ ✅ <b>NOT SPAM</b></p>
-
----
-
-<h2>🚀 Run Locally</h2>
-
-<pre>
-git clone https://github.com/shubhumre777/spam-classifier.git
-cd spam-classifier
+```bash
 pip install -r requirements.txt
 streamlit run app.py
-</pre>
+```
+
+The app loads `spam_model.joblib`, accepts a message, applies text cleaning, and displays the predicted class.
+
+## Technology stack
+
+<p align="center"><img src="https://skillicons.dev/icons?i=python,sklearn,pandas,numpy,git" alt="Technology icons"></p>
+
+| Tool | Role |
+|---|---|
+| Python | Core implementation |
+| NLTK | Tokenization, stopwords and stemming |
+| Pandas | Dataset and model input handling |
+| scikit-learn | TF-IDF, pipeline, Naive Bayes and evaluation |
+| Joblib | Model serialization |
+| Streamlit | Interactive web application |
+
+## Scope and considerations
+
+- The training script expects a local `spam.csv`; it is not present in the repository root.
+- The model uses TF-IDF and Multinomial Naive Bayes, not a transformer or large language model.
+- A prediction is a model classification, not a guarantee that a message is safe.
+- The current interface displays the predicted class; it does not display calibrated probabilities or explain individual features.
+- Dataset composition and the evaluation split affect generalization to new messages.
+
+## Roadmap
+
+| Improvement | Why it matters |
+|---|---|
+| Publish reproducible evaluation results | Make model quality independently verifiable |
+| Add confusion matrix and per-class metrics | Understand false positives and false negatives |
+| Compare Naive Bayes, Logistic Regression and Linear SVM | Establish stronger baselines |
+| Add model and dataset version information | Improve experiment reproducibility |
+| Add calibrated prediction confidence | Communicate uncertainty responsibly |
+| Add preprocessing and inference tests | Catch training-serving inconsistencies |
+
+## Author
+
+<div align="center">
+
+**Shubh Umre**  
+B.Tech — Artificial Intelligence & Machine Learning
+
+[GitHub](https://github.com/shubhumre777) · [Repository](https://github.com/shubhumre777/spam_email_detection) · [Live application](https://spamemaildetection-a5ve47mcinjnq5vnsuakel.streamlit.app/)
+
+*Built with Python, NLP and Machine Learning.*
 
 ---
 
-<h2>🚀 Future Improvements</h2>
+If you find this project useful, consider giving the repository a ⭐
 
-<ul>
-  <li>🤖 Advanced ML models (SVM, Random Forest)</li>
-  <li>🧠 Deep Learning (LSTM, BERT)</li>
-  <li>☁️ Cloud deployment (AWS/GCP)</li>
-  <li>📧 Gmail integration</li>
-  <li>🌍 Multi-language support</li>
-</ul>
+**SPAM DETECTED? 🚨  LEGIT MESSAGE? ✅  LET THE MODEL DECIDE.**
 
----
-
-<h2>⚠️ Limitations</h2>
-
-<ul>
-  <li>SMS dataset only</li>
-  <li>Limited vocabulary</li>
-  <li>No deep contextual understanding</li>
-</ul>
-
----
-
-<h2 align="center">👨‍💻 Author</h2>
-
-<p align="center">
-  Built with ❤️ using Machine Learning & NLP
-</p>
-
----
-
-<h2 align="center">⭐ Support</h2>
-
-<p align="center">
-  ⭐ Star the repo &nbsp;&nbsp; 🍴 Fork it &nbsp;&nbsp; 🚀 Contribute
-</p>
+</div>
