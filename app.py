@@ -18,27 +18,33 @@ st.set_page_config(
 )
 
 
-# Configure the local directory for NLTK resources
-NLTK_DATA_DIR = os.path.join(os.getcwd(), "nltk_data")
-os.makedirs(NLTK_DATA_DIR, exist_ok=True)
+# Configure a private directory for NLTK resources
+NLTK_DATA_DIR = os.path.join(os.path.expanduser("~"), "nltk_data")
+os.makedirs(NLTK_DATA_DIR, mode=0o700, exist_ok=True)
+os.chmod(NLTK_DATA_DIR, 0o700)
 
 nltk.data.path.insert(0, NLTK_DATA_DIR)
 
 
 # Download required NLTK resources if they are not available
-for resource in ["punkt", "punkt_tab", "stopwords"]:
+resources = {
+    "punkt": "tokenizers/punkt",
+    "punkt_tab": "tokenizers/punkt_tab",
+    "stopwords": "corpora/stopwords"
+}
+
+for resource, resource_path in resources.items():
     try:
-        nltk.data.find(
-            f"tokenizers/{resource}"
-            if "punkt" in resource
-            else f"corpora/{resource}"
-        )
+        nltk.data.find(resource_path)
     except LookupError:
-        nltk.download(
+        downloaded = nltk.download(
             resource,
             download_dir=NLTK_DATA_DIR,
             quiet=True
         )
+
+        if not downloaded:
+            raise RuntimeError(f"Failed to download NLTK resource: {resource}")
 
 
 # Initialize the Porter Stemmer
